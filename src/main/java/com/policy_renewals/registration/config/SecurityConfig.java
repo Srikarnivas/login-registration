@@ -20,7 +20,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())  // Disable CSRF protection
                 .authorizeHttpRequests(authorize ->
                         authorize
-                                .requestMatchers("/api/agents/register", "/api/agents/login").permitAll()  // Allow access to these endpoints
+                                .requestMatchers("/api/agents/register", "/api/agents/login").permitAll()  // Allow access to agent-related endpoints
+                                .requestMatchers("/api/policies/**", "/api/policies-brought/**").permitAll()  // Allow access to policy-related endpoints
                                 .anyRequest().authenticated()  // All other endpoints require authentication
                 );
         return http.build();
