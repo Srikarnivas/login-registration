@@ -2,7 +2,6 @@ package com.policy_renewals.registration.model;
 
 import jakarta.persistence.*;
 import java.util.Date;
-
 @Entity
 @Table(name = "Policies_Brought_Table")
 public class PoliciesBrought {
@@ -21,6 +20,11 @@ public class PoliciesBrought {
     private String holderAddress;
     private String email;
 
+    // New status column
+    @Column(name = "status")
+    private String status;
+
+    // Getters and Setters
     public Long getTransactionId() {
         return transactionId;
     }
@@ -85,32 +89,11 @@ public class PoliciesBrought {
         this.email = email;
     }
 
-    public PoliciesBrought(Long transactionId, String email, String holderAddress, String holderName, Date broughtDate, Integer period, Double price, Long policyId) {
-        this.transactionId = transactionId;
-        this.email = email;
-        this.holderAddress = holderAddress;
-        this.holderName = holderName;
-        this.broughtDate = broughtDate;
-        this.period = period;
-        this.price = price;
-        this.policyId = policyId;
+    public String getStatus() {
+        return status;
     }
 
-    public PoliciesBrought() {
-        super();
-    }
-
-    @Override
-    public String toString() {
-        return "PoliciesBrought{" +
-                "transactionId=" + transactionId +
-                ", policyId=" + policyId +
-                ", price=" + price +
-                ", broughtDate=" + broughtDate +
-                ", period=" + period +
-                ", holderName='" + holderName + '\'' +
-                ", holderAddress='" + holderAddress + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

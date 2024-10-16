@@ -1,21 +1,13 @@
-package com.policy_renewals.registration.model;
+package com.policy_renewals.registration.DTO;
 
-import jakarta.persistence.*;
 
-@Entity
-@Table(name = "Policies_Table")
-public class Policy {
+public class PolicyDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long policyId;
-
     private Double price;
     private String policyName;
     private Integer period;
     private String description;
-
-    // Removed status
 
     public Long getPolicyId() {
         return policyId;
@@ -23,22 +15,6 @@ public class Policy {
 
     public void setPolicyId(Long policyId) {
         this.policyId = policyId;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getPeriod() {
-        return period;
-    }
-
-    public void setPeriod(Integer period) {
-        this.period = period;
     }
 
     public Double getPrice() {
@@ -57,21 +33,37 @@ public class Policy {
         this.policyName = policyName;
     }
 
-    public Policy(Long policyId, String description, Integer period, String policyName, Double price) {
-        this.policyId = policyId;
-        this.description = description;
-        this.period = period;
-        this.policyName = policyName;
-        this.price = price;
+    public Integer getPeriod() {
+        return period;
     }
 
-    public Policy() {
+    public void setPeriod(Integer period) {
+        this.period = period;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public PolicyDTO(Long policyId, Double price, String policyName, Integer period, String description) {
+        this.policyId = policyId;
+        this.price = price;
+        this.policyName = policyName;
+        this.period = period;
+        this.description = description;
+    }
+
+    public PolicyDTO() {
         super();
     }
 
     @Override
     public String toString() {
-        return "Policy{" +
+        return "PolicyDTO{" +
                 "policyId=" + policyId +
                 ", price=" + price +
                 ", policyName='" + policyName + '\'' +

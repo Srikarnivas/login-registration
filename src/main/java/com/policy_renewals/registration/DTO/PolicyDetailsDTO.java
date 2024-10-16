@@ -13,20 +13,23 @@ public class PolicyDetailsDTO {
     private Double policyPrice;
     private Integer policyPeriod;
     private String description;
+    private String policyStatus;
 
     // Constructors, Getters, Setters
 
-    public PolicyDetailsDTO(Double broughtPrice, String description, Integer policyPeriod, Double policyPrice, String email, String policyName, String holderAddress, String holderName, Integer broughtPeriod, Date broughtDate) {
+
+    public PolicyDetailsDTO(Double broughtPrice, Date broughtDate, Integer broughtPeriod, String holderName, String holderAddress, String email, String policyName, Double policyPrice, Integer policyPeriod, String description, String policyStatus) {
         this.broughtPrice = broughtPrice;
-        this.description = description;
-        this.policyPeriod = policyPeriod;
-        this.policyPrice = policyPrice;
+        this.broughtDate = broughtDate;
+        this.broughtPeriod = broughtPeriod;
+        this.holderName = holderName;
+        this.holderAddress = holderAddress;
         this.email = email;
         this.policyName = policyName;
-        this.holderAddress = holderAddress;
-        this.holderName = holderName;
-        this.broughtPeriod = broughtPeriod;
-        this.broughtDate = broughtDate;
+        this.policyPrice = policyPrice;
+        this.policyPeriod = policyPeriod;
+        this.description = description;
+        this.policyStatus = policyStatus;
     }
 
     public PolicyDetailsDTO() {
@@ -112,4 +115,11 @@ public class PolicyDetailsDTO {
         this.broughtPrice = broughtPrice;
     }
 
+    public String getPolicyStatus() {
+        return policyStatus;
+    }
+
+    public void setPolicyStatus(String policyStatus) {
+        this.policyStatus = policyStatus;
+    }
 }
