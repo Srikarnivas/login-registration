@@ -2,6 +2,7 @@ package com.policy_renewals.registration.model;
 
 import jakarta.persistence.*;
 import java.util.Date;
+
 @Entity
 @Table(name = "Policies_Brought_Table")
 public class PoliciesBrought {
@@ -23,6 +24,7 @@ public class PoliciesBrought {
     // New status column
     @Column(name = "status")
     private String status;
+
 
     // Getters and Setters
     public Long getTransactionId() {
