@@ -76,4 +76,9 @@ public class PolicyService {
 
         return policyMap;
     }
+
+    // Method to fetch all policies from PoliciesBrought table
+    public List<PoliciesBrought> getAllPoliciesBrought() {
+        return policiesBroughtRepository.findAll();
+    }
 }
