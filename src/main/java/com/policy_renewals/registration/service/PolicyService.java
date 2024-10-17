@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 @Service
 public class PolicyService {
 
@@ -39,7 +40,7 @@ public class PolicyService {
         dto.setPolicyPrice(policy.getPrice());
         dto.setPolicyPeriod(policy.getPeriod());
         dto.setDescription(policy.getDescription());
-        dto.setPolicyStatus(policiesBrought.getStatus());  // Now status comes from PoliciesBrought
+        dto.setPolicyStatus(policiesBrought.getStatus());
 
         return dto;
     }
@@ -77,8 +78,11 @@ public class PolicyService {
         return policyMap;
     }
 
-    // Method to fetch all policies from PoliciesBrought table
     public List<PoliciesBrought> getAllPoliciesBrought() {
         return policiesBroughtRepository.findAll();
+    }
+
+    public String getPolicyNameById(Long policyId) {
+        return policyRepository.findPolicyNameById(policyId);
     }
 }
