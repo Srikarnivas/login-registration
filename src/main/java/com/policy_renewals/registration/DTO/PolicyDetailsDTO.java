@@ -130,4 +130,5 @@ public class PolicyDetailsDTO {
     public void setRenewalDate(Date renewalDate) {
         this.renewalDate = renewalDate;
     }
+
 }

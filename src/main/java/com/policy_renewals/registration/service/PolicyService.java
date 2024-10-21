@@ -41,6 +41,7 @@ public class PolicyService {
         dto.setPolicyPeriod(policy.getPeriod());
         dto.setDescription(policy.getDescription());
         dto.setPolicyStatus(policiesBrought.getStatus());
+        dto.setRenewalDate(policiesBrought.getRenewalDate());  // Corrected to use setter
 
         return dto;
     }
@@ -52,16 +53,15 @@ public class PolicyService {
         Policy policy = policyRepository.findById(policiesBrought.getPolicyId())
                 .orElseThrow(() -> new RuntimeException("Policy not found"));
 
-
+        // Update fields from PoliciesBrought
         policiesBrought.setPrice(policy.getPrice());
         policiesBrought.setPeriod(policy.getPeriod());
 
-
+        // Check if this is a new policy or a renewal
         if (policiesBrought.getBroughtDate() == null) {
-            policiesBrought.setBroughtDate(new Date());
+            policiesBrought.setBroughtDate(new Date());  // Set brought date for new policies
         } else {
-
-            policiesBrought.setRenewalDate(new Date());
+            policiesBrought.setRenewalDate(new Date());  // Set renewal date for existing policies
         }
 
         policiesBrought.setStatus("Active");
@@ -70,7 +70,6 @@ public class PolicyService {
 
         return getPolicyDetails(transactionId);
     }
-
 
     public Map<Long, Policy> getAllPoliciesAsMap() {
         List<Policy> policies = policyRepository.findAll();
