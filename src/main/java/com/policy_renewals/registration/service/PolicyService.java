@@ -52,20 +52,25 @@ public class PolicyService {
         Policy policy = policyRepository.findById(policiesBrought.getPolicyId())
                 .orElseThrow(() -> new RuntimeException("Policy not found"));
 
-        // Update fields from Policies_Table
+
         policiesBrought.setPrice(policy.getPrice());
         policiesBrought.setPeriod(policy.getPeriod());
-        policiesBrought.setBroughtDate(new Date()); // Set brought date to current date
 
-        // Set status to "Active"
+
+        if (policiesBrought.getBroughtDate() == null) {
+            policiesBrought.setBroughtDate(new Date());
+        } else {
+
+            policiesBrought.setRenewalDate(new Date());
+        }
+
         policiesBrought.setStatus("Active");
 
-        // Save updated PoliciesBrought record
         policiesBroughtRepository.save(policiesBrought);
 
-        // Return updated details
         return getPolicyDetails(transactionId);
     }
+
 
     public Map<Long, Policy> getAllPoliciesAsMap() {
         List<Policy> policies = policyRepository.findAll();

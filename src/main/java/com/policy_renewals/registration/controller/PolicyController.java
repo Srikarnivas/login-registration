@@ -3,6 +3,7 @@ package com.policy_renewals.registration.controller;
 import com.policy_renewals.registration.DTO.PolicyDetailsDTO;
 import com.policy_renewals.registration.model.PoliciesBrought;
 import com.policy_renewals.registration.model.Policy;
+import com.policy_renewals.registration.service.PolicyEmailService;
 import com.policy_renewals.registration.service.PolicyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,15 @@ public class PolicyController {
     public ResponseEntity<List<PoliciesBrought>> getAllPoliciesBrought() {
         List<PoliciesBrought> policiesBroughtList = policyService.getAllPoliciesBrought();
         return ResponseEntity.ok(policiesBroughtList);
+    }
+
+    @Autowired
+    private PolicyEmailService policyEmailService;
+
+    @PostMapping("/send-expiration-emails")
+    public ResponseEntity<String> sendExpirationEmails() {
+        policyEmailService.sendEmailsForExpiredPolicies();
+        return ResponseEntity.ok("Emails sent for expired policies.");
     }
 }
 

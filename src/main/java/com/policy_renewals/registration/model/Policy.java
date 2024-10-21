@@ -15,7 +15,6 @@ public class Policy {
     private Integer period;
     private String description;
 
-    // Removed status
 
     public Long getPolicyId() {
         return policyId;

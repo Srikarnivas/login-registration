@@ -19,7 +19,6 @@ public class EmailService {
             message.setText(body);
             emailSender.send(message);
         } catch (Exception e) {
-            // Log the error
             System.err.println("Error sending email: " + e.getMessage());
         }
     }

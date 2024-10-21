@@ -16,17 +16,17 @@ public class PoliciesBrought {
 
     private Double price;
     private Date broughtDate;
-    private Integer period; // In months
+    private Integer period;
     private String holderName;
     private String holderAddress;
     private String email;
 
-    // New status column
     @Column(name = "status")
     private String status;
 
+    @Column(name = "renewal_Date")
+    private Date renewalDate;
 
-    // Getters and Setters
     public Long getTransactionId() {
         return transactionId;
     }
@@ -97,5 +97,13 @@ public class PoliciesBrought {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getRenewalDate() {
+        return renewalDate;
+    }
+
+    public void setRenewalDate(Date renewalDate) {
+        this.renewalDate = renewalDate;
     }
 }

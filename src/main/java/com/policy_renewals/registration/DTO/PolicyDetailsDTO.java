@@ -14,22 +14,22 @@ public class PolicyDetailsDTO {
     private Integer policyPeriod;
     private String description;
     private String policyStatus;
+    private Date renewalDate;
 
-    // Constructors, Getters, Setters
 
-
-    public PolicyDetailsDTO(Double broughtPrice, Date broughtDate, Integer broughtPeriod, String holderName, String holderAddress, String email, String policyName, Double policyPrice, Integer policyPeriod, String description, String policyStatus) {
+    public PolicyDetailsDTO(Double broughtPrice, Date renewalDate, String policyStatus, String description, Integer policyPeriod, Double policyPrice, String policyName, String email, String holderAddress, String holderName, Integer broughtPeriod, Date broughtDate) {
         this.broughtPrice = broughtPrice;
-        this.broughtDate = broughtDate;
-        this.broughtPeriod = broughtPeriod;
-        this.holderName = holderName;
-        this.holderAddress = holderAddress;
-        this.email = email;
-        this.policyName = policyName;
-        this.policyPrice = policyPrice;
-        this.policyPeriod = policyPeriod;
-        this.description = description;
+        this.renewalDate = renewalDate;
         this.policyStatus = policyStatus;
+        this.description = description;
+        this.policyPeriod = policyPeriod;
+        this.policyPrice = policyPrice;
+        this.policyName = policyName;
+        this.email = email;
+        this.holderAddress = holderAddress;
+        this.holderName = holderName;
+        this.broughtPeriod = broughtPeriod;
+        this.broughtDate = broughtDate;
     }
 
     public PolicyDetailsDTO() {
@@ -121,5 +121,13 @@ public class PolicyDetailsDTO {
 
     public void setPolicyStatus(String policyStatus) {
         this.policyStatus = policyStatus;
+    }
+
+    public Date getRenewalDate() {
+        return renewalDate;
+    }
+
+    public void setRenewalDate(Date renewalDate) {
+        this.renewalDate = renewalDate;
     }
 }

@@ -23,12 +23,12 @@ public class PolicyExpirationSchedulerService {
     private PoliciesBroughtRepository policiesBroughtRepository;
 
     @Autowired
-    private PolicyRepository policyRepository;// Use the correct repository
+    private PolicyRepository policyRepository;
 
     @Autowired
-    private EmailService emailService; // Inject the email service
+    private EmailService emailService;
 
-    @Scheduled(cron = "0 43 15 * * ?") // Runs every day at 11:20 AM
+    @Scheduled(cron = "0 43 15 * * ?")
     public void checkExpiredPolicies() {
         logger.info("Checking for expired policies...");
 
@@ -38,11 +38,11 @@ public class PolicyExpirationSchedulerService {
             if (isPolicyExpired(policy)) {
                 logger.info("Updating policy ID {} to expired.", policy.getPolicyId());
                 policy.setStatus("Expired");
-                policiesBroughtRepository.save(policy); // Save the updated policy
-                sendEmailReminder(policy); // Send email after expiration
+                policiesBroughtRepository.save(policy);
+                sendEmailReminder(policy);
             } else if (isOneMonthBeforeRenewal(policy)) {
                 logger.info("Sending renewal reminder email for policy ID {}.", policy.getPolicyId());
-                sendEmailReminder(policy); // Send email one month before renewal
+                sendEmailReminder(policy);
             }
         }
     }
@@ -58,7 +58,7 @@ public class PolicyExpirationSchedulerService {
     private boolean isOneMonthBeforeRenewal(PoliciesBrought policy) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(policy.getBroughtDate());
-        cal.add(Calendar.MONTH, policy.getPeriod() - 1); // One month before the renewal date
+        cal.add(Calendar.MONTH, policy.getPeriod() - 1);
         Date oneMonthBeforeRenewalDate = cal.getTime();
         return new Date().after(oneMonthBeforeRenewalDate) && new Date().before(new Date());
     }
@@ -69,13 +69,11 @@ public class PolicyExpirationSchedulerService {
     private void sendEmailReminder(PoliciesBrought policy) {
         String subject = "Policy Renewal Reminder!";
 
-        // Calculate the expiration date
         Calendar cal = Calendar.getInstance();
         cal.setTime(policy.getBroughtDate());
         cal.add(Calendar.MONTH, policy.getPeriod());
         Date expirationDate = cal.getTime();
 
-        // Retrieve the policy name using the PolicyService
         String policyName = policyService.getPolicyNameById(policy.getPolicyId());
 
         String body = String.format(

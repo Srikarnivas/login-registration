@@ -18,7 +18,6 @@ public class AgentService {
     private BCryptPasswordEncoder passwordEncoder;
 
     public Agent registerAgent(Agent agent) {
-        // Encrypt the password
         agent.setPassword(passwordEncoder.encode(agent.getPassword()));
         return agentRepository.save(agent);
     }
