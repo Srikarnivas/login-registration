@@ -28,7 +28,7 @@ public class PolicyExpirationSchedulerService {
     @Autowired
     private EmailService emailService;
 
-    @Scheduled(cron = "0 43 15 * * ?")
+    @Scheduled(cron = "0 0 0 * * ?")
     public void checkExpiredPolicies() {
         logger.info("Checking for expired policies...");
 
